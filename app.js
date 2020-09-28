@@ -20,9 +20,18 @@ const app = {
     // Associe une action au fait de cliquer sur ce bouton
     addTodoButton.addEventListener(
       'click',
-      function() { app.addTodo('Coucou') }
+      function() {
+        // Sélectionne le champ texte
+        const todoNameInput = document.getElementById('add-todo-name');
+        // Récupère le contenu du champ texte
+        const todoName = todoNameInput.value;
+        todoNameInput.value = '';
+        // Ajoute une nouvelle tâche
+        app.addTodo(todoName);
+      }
     );
   },
+
   // Ajoute une nouvelle tâche à faire dans la liste
   addTodo: function(todoName) {
     // Sélectionne la liste des tâches à faire
