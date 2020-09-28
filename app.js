@@ -12,20 +12,29 @@ En JS 6, le mot-clé var est obsolète et est remplacé par const et let:
 
 */
 const app = {
+  // Initialise l'application
+  init: function() {
+    console.log('init function called');
+    // Sélectionne le bouton "Add todo"
+    const addTodoButton = document.getElementById('add-todo');
+    // Associe une action au fait de cliquer sur ce bouton
+    addTodoButton.addEventListener(
+      'click',
+      function() { app.addTodo('Coucou') }
+    );
+  },
+  // Ajoute une nouvelle tâche à faire dans la liste
   addTodo: function(todoName) {
-    // Sélectionner la liste des tâches à faire
+    // Sélectionne la liste des tâches à faire
     const todoList = document.getElementById('todo-list');
-    // Créer un nouvel élément et lui appliquer le texte donné en entrée
+    // Crée un nouvel élément et lui appliquer le texte donné en entrée
     const newTodo = document.createElement('li');
     newTodo.className = 'list-group-item';
     newTodo.innerText = todoName;
-    // Ajouter cet élément dans la liste
+    // Ajoute cet élément dans la liste
     todoList.appendChild(newTodo);
-  }
+  },
 };
 
-const addTodoButton = document.getElementById('add-todo');
-addTodoButton.addEventListener(
-  'click',
-  function() { app.addTodo('Coucou') }
-);
+// Initialise l'application automatiquement au chargement de la page
+app.init();
