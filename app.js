@@ -25,14 +25,18 @@ const app = {
     app.addTodoForm.addEventListener(
       'submit',
       function(event) {
+        console.log('form submitted');
         // Empêche le rechargement de la page
         // (comportement normal du fait de  valider un formulaire)
         event.preventDefault();
         // Récupère le contenu du champ texte
         const todoName = app.todoNameInput.value;
         app.todoNameInput.value = '';
-        // Ajoute une nouvelle tâche
-        app.addTodo(todoName);
+        // Si le nom de la nouvelle tâche n'est pas vide
+        if (todoName !== '') {
+          // Ajoute une nouvelle tâche
+          app.addTodo(todoName);
+        }
       }
     );
   },
