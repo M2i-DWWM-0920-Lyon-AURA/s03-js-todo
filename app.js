@@ -16,6 +16,8 @@ const app = {
   addTodoForm: document.getElementById('add-todo'),
   // Sélectionne le champ texte
   todoNameInput: document.getElementById('add-todo-name'),
+  // Sélectionne le champ texte
+  addTodoButton: document.getElementById('add-todo-button'),
   // Sélectionne la liste des tâches à faire
   todoList: document.getElementById('todo-list'),
 
@@ -25,17 +27,31 @@ const app = {
     app.addTodoForm.addEventListener(
       'submit',
       function(event) {
-        console.log('form submitted');
         // Empêche le rechargement de la page
-        // (comportement normal du fait de  valider un formulaire)
+        // (comportement normal du fait de valider un formulaire)
         event.preventDefault();
         // Récupère le contenu du champ texte
         const todoName = app.todoNameInput.value;
+        // Efface le contenu du champ texte
         app.todoNameInput.value = '';
-        // Si le nom de la nouvelle tâche n'est pas vide
-        if (todoName !== '') {
-          // Ajoute une nouvelle tâche
-          app.addTodo(todoName);
+        // Désactive le bouton
+        app.addTodoButton.disabled = true;
+        // Ajoute une nouvelle tâche
+        app.addTodo(todoName);
+      }
+    );
+    // Associe une action au fait que la valeur du champ texte soit modifiée
+    app.todoNameInput.addEventListener(
+      'input',
+      function(event) {
+        // Si le champ texte est vide
+        if (event.target.value === '') {
+          // Désactive le bouton
+          app.addTodoButton.disabled = true;
+          // Sinon
+        } else {
+          // Enlève le statut désactivé du bouton
+          app.addTodoButton.disabled = false;
         }
       }
     );
