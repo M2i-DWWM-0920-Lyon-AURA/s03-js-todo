@@ -12,20 +12,25 @@ En JS 6, le mot-clé var est obsolète et est remplacé par const et let:
 
 */
 const app = {
+  // Sélectionne le formulaire "Add todo"
+  addTodoForm: document.getElementById('add-todo'),
+  // Sélectionne le champ texte
+  todoNameInput: document.getElementById('add-todo-name'),
+  // Sélectionne la liste des tâches à faire
+  todoList: document.getElementById('todo-list'),
+
   // Initialise l'application
   init: function() {
-    console.log('init function called');
-    // Sélectionne le bouton "Add todo"
-    const addTodoButton = document.getElementById('add-todo');
-    // Associe une action au fait de cliquer sur ce bouton
-    addTodoButton.addEventListener(
-      'click',
-      function() {
-        // Sélectionne le champ texte
-        const todoNameInput = document.getElementById('add-todo-name');
+    // Associe une action au fait de valider le formulaire "Add todo"
+    app.addTodoForm.addEventListener(
+      'submit',
+      function(event) {
+        // Empêche le rechargement de la page
+        // (comportement normal du fait de  valider un formulaire)
+        event.preventDefault();
         // Récupère le contenu du champ texte
-        const todoName = todoNameInput.value;
-        todoNameInput.value = '';
+        const todoName = app.todoNameInput.value;
+        app.todoNameInput.value = '';
         // Ajoute une nouvelle tâche
         app.addTodo(todoName);
       }
@@ -34,14 +39,12 @@ const app = {
 
   // Ajoute une nouvelle tâche à faire dans la liste
   addTodo: function(todoName) {
-    // Sélectionne la liste des tâches à faire
-    const todoList = document.getElementById('todo-list');
     // Crée un nouvel élément et lui appliquer le texte donné en entrée
     const newTodo = document.createElement('li');
     newTodo.className = 'list-group-item';
     newTodo.innerText = todoName;
     // Ajoute cet élément dans la liste
-    todoList.appendChild(newTodo);
+    app.todoList.appendChild(newTodo);
   },
 };
 
