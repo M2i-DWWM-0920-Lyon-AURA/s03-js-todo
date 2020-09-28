@@ -65,10 +65,32 @@ const app = {
   addTodo: function(todoName) {
     // Crée un nouvel élément et lui applique le texte donné en entrée
     const newTodo = document.createElement('li');
-    newTodo.className = 'list-group-item d-flex justify-content-between';
+    newTodo.className = 'todo list-group-item d-flex justify-content-between';
     newTodo.innerText = todoName;
     // Ajoute cet élément dans la liste
     app.todoList.appendChild(newTodo);
+    // Crée une checkbox
+    const checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    // Associe une action au fait de cocher la checkbox
+    checkBox.addEventListener(
+      'change',
+      function(event) {
+        // Si la checkbox vient d'être cochée
+        if (event.target.checked) {
+          // Rajouter une classe "done" afin de faire apparaître
+          // la tâche comme terminée
+          newTodo.classList.add('done');
+        // Sinon
+        } else {
+          // Enlever la classe "done" afin de faire apparaître
+          // la tâche comme non terminée
+          newTodo.classList.remove('done');
+        }
+      }
+    );
+    // Ajoute la checkbox au nouvel élément de liste
+    newTodo.appendChild(checkBox);
     // Crée un nouveau bouton "Supprimer"
     const deleteButton = document.createElement('button');
     deleteButton.className = 'btn btn-outline-danger btn-sm';
