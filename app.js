@@ -1,3 +1,16 @@
+/* 
+VARIABLES
+
+En JS 5, on utilise le mot-clé var (facultatif) pour déclarer des variables:
+
+  var myVariable = 'text';
+
+En JS 6, le mot-clé var est obsolète et est remplacé par const et let:
+
+  const myVariable = 'text;   // pour une variable dont la valeur ne doit pas changer
+  let myVariable = 'text';  // pour permettre à la variable de changer de valeur plus tard
+
+*/
 const app = {
   addTodo: function(todoName) {
     // Sélectionner la liste des tâches à faire
