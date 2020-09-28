@@ -55,16 +55,34 @@ const app = {
         }
       }
     );
+    // Ajoute des tâches par défaut
+    app.addTodo('Acheter des bananes');
+    app.addTodo('Ranger ma chambre');
+    app.addTodo('Relire mes cours de JavaScript');
   },
 
   // Ajoute une nouvelle tâche à faire dans la liste
   addTodo: function(todoName) {
-    // Crée un nouvel élément et lui appliquer le texte donné en entrée
+    // Crée un nouvel élément et lui applique le texte donné en entrée
     const newTodo = document.createElement('li');
-    newTodo.className = 'list-group-item';
+    newTodo.className = 'list-group-item d-flex justify-content-between';
     newTodo.innerText = todoName;
     // Ajoute cet élément dans la liste
     app.todoList.appendChild(newTodo);
+    // Crée un nouveau bouton "Supprimer"
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'btn btn-outline-danger btn-sm';
+    deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    // Associe une action au fait de cliquer sur le bouton "Supprimer"
+    deleteButton.addEventListener(
+      'click',
+      function() {
+        // Supprime l'élément de la liste
+        app.todoList.removeChild(newTodo);
+      }
+    );
+    // Ajoute ce bouton au nouvel élément de liste
+    newTodo.appendChild(deleteButton);
   },
 };
 
