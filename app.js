@@ -101,6 +101,8 @@ const app = {
     // =================================================================================
     // Crée un formulaire permettant de modifier le nom de la tâche
     const nameEdit = document.createElement('form');
+    // Rend le formulaire invisible par défaut
+    nameEdit.className = 'd-none';
     // Crée un champ texte
     const nameEditInput = document.createElement('input');
     nameEditInput.type = 'text';
@@ -124,6 +126,28 @@ const app = {
         const newName = nameEditInput.value;
         // Remplace le texte du nouvel élément de liste par ce texte
         todoNameElement.innerText = newName;
+        // Masque le formulaire
+        nameEdit.classList.add('d-none');
+        // Affiche l'élément de texte
+        todoNameElement.classList.remove('d-none');
+      }
+    );
+    // =================================================================================
+    // Crée un bouton "Modifier" permettant d'afficher le formulaire de changement de nom
+    const editButton = document.createElement('button');
+    editButton.innerText = 'Edit';
+    // Ajoute le bouton "Modifier" au nouvel élément de liste
+    newTodo.appendChild(editButton);
+    // Associe une action au fait de cliquer sur le bouton "Modifier"
+    editButton.addEventListener(
+      'click',
+      function() {
+        // Masquer l'élément de texte
+        todoNameElement.classList.add('d-none');
+        // Afficher le formulaire de changement de nom
+        nameEdit.classList.remove('d-none');
+        // Donne au champ texte du formulaire la valeur actuelle de l'élément de texte
+        nameEditInput.value = todoNameElement.innerText;
       }
     );
 
