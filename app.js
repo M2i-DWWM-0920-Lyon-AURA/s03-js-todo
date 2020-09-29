@@ -65,12 +65,13 @@ const app = {
   addTodo: function(todoName) {
     // Crée un nouvel élément et lui applique le texte donné en entrée
     const newTodo = document.createElement('li');
-    newTodo.className = 'todo list-group-item d-flex justify-content-between';
+    newTodo.className = 'todo list-group-item d-flex align-items-center justify-content-between';
     newTodo.innerText = todoName;
     // Ajoute cet élément dans la liste
     app.todoList.appendChild(newTodo);
     // Crée une checkbox
     const checkBox = document.createElement('input');
+    checkBox.className = 'order-first';
     checkBox.type = 'checkbox';
     // Associe une action au fait de cocher la checkbox
     checkBox.addEventListener(

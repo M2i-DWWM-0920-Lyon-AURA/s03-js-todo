@@ -2,3 +2,7 @@
     text-decoration: line-through;
     color: darkgrey;
 }
+
+.order-first {
+    order: -1;
+}
