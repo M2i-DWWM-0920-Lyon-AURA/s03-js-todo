@@ -6,3 +6,9 @@
 .order-first {
     order: -1;
 }
+
+.todo-name {
+    font-size: 1rem;
+    margin: initial;
+    font-weight: normal;
+}

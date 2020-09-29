@@ -63,12 +63,18 @@ const app = {
 
   // Ajoute une nouvelle tâche à faire dans la liste
   addTodo: function(todoName) {
-    // Crée un nouvel élément et lui applique le texte donné en entrée
+    // Crée un nouvel élément de liste
     const newTodo = document.createElement('li');
     newTodo.className = 'todo list-group-item d-flex align-items-center justify-content-between';
-    newTodo.innerText = todoName;
-    // Ajoute cet élément dans la liste
+    // Crée un nouveau élément texte
+    const todoNameElement = document.createElement('h2');
+    todoNameElement.className = 'todo-name';
+    todoNameElement.innerText = todoName;
+    // Ajoute cet élément texte à l'élément de liste
+    newTodo.appendChild(todoNameElement);
+    // Ajoute cet élément de liste dans la liste
     app.todoList.appendChild(newTodo);
+    // =================================================================================
     // Crée une checkbox
     const checkBox = document.createElement('input');
     checkBox.className = 'order-first';
@@ -92,6 +98,36 @@ const app = {
     );
     // Ajoute la checkbox au nouvel élément de liste
     newTodo.appendChild(checkBox);
+    // =================================================================================
+    // Crée un formulaire permettant de modifier le nom de la tâche
+    const nameEdit = document.createElement('form');
+    // Crée un champ texte
+    const nameEditInput = document.createElement('input');
+    nameEditInput.type = 'text';
+    // Ajoute le champ texte au formulaire
+    nameEdit.appendChild(nameEditInput);
+    // Crée un bouton permettant de valider le formulaire
+    const nameEditButton = document.createElement('button');
+    nameEditButton.innerText = 'Submit';
+    // Ajoute le bouton au formulaire
+    nameEdit.appendChild(nameEditButton);
+    // Ajoute le formulaire au nouvel élément de liste
+    newTodo.appendChild(nameEdit);
+    // Associe une action au fait de valider le formulaire
+    nameEdit.addEventListener(
+      'submit',
+      function(event) {
+        // Empêche le rechargement de la page
+        // (comportement normal du fait de valider un formulaire)
+        event.preventDefault();
+        // Récupère la valeur du champ texte
+        const newName = nameEditInput.value;
+        // Remplace le texte du nouvel élément de liste par ce texte
+        todoNameElement.innerText = newName;
+      }
+    );
+
+    // =================================================================================
     // Crée un nouveau bouton "Supprimer"
     const deleteButton = document.createElement('button');
     deleteButton.className = 'btn btn-outline-danger btn-sm';
