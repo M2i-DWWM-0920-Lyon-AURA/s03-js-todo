@@ -110,7 +110,8 @@ const app = {
     nameEdit.appendChild(nameEditInput);
     // Crée un bouton permettant de valider le formulaire
     const nameEditButton = document.createElement('button');
-    nameEditButton.innerText = 'Submit';
+    nameEditButton.className = 'btn btn-outline-success btn-sm';
+    nameEditButton.innerHTML = '<i class="fas fa-check"></i>';
     // Ajoute le bouton au formulaire
     nameEdit.appendChild(nameEditButton);
     // Ajoute le formulaire au nouvel élément de liste
@@ -133,11 +134,14 @@ const app = {
       }
     );
     // =================================================================================
+    // Crée un bloc de boutons pour accueillir les boutons "Modifier" et "Supprimer"
+    const buttonBlock = document.createElement('div');
+    newTodo.appendChild(buttonBlock);
+    // =================================================================================
     // Crée un bouton "Modifier" permettant d'afficher le formulaire de changement de nom
     const editButton = document.createElement('button');
-    editButton.innerText = 'Edit';
-    // Ajoute le bouton "Modifier" au nouvel élément de liste
-    newTodo.appendChild(editButton);
+    editButton.innerHTML = '<i class="fas fa-edit"></i>';
+    editButton.className = 'btn btn-outline-warning btn-sm';
     // Associe une action au fait de cliquer sur le bouton "Modifier"
     editButton.addEventListener(
       'click',
@@ -150,7 +154,9 @@ const app = {
         nameEditInput.value = todoNameElement.innerText;
       }
     );
-
+    // Ajoute le bouton "Modifier" au nouvel élément de liste
+    buttonBlock.appendChild(editButton);
+      
     // =================================================================================
     // Crée un nouveau bouton "Supprimer"
     const deleteButton = document.createElement('button');
@@ -165,7 +171,7 @@ const app = {
       }
     );
     // Ajoute ce bouton au nouvel élément de liste
-    newTodo.appendChild(deleteButton);
+    buttonBlock.appendChild(deleteButton);
   },
 };
 
